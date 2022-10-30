@@ -1,2 +1,2 @@
-# practice-book-tracker
-Using Object Constructors to Build a Book Tracker.
+# Book Tracker
+Using Object Constructors and Object prototypes to Build a Book Tracker.
