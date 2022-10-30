@@ -19,3 +19,4 @@ function addBookToLibrary(title, author, pages, read) {
 // Add some books to array. 
 myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
+

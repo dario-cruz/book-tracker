@@ -1,0 +1,20 @@
+/* Browser default reset. */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.header {
+    background-color: aquamarine;
+    height: 100px;
+    width: 100vw;
+    text-align: center;
+}
+
+.library {
+    background-color: antiquewhite;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
