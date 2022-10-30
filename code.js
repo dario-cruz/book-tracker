@@ -24,7 +24,8 @@ function addBookToLibrary(title, author, pages, read) {
 // Add some books to array. 
 myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
-
+myLibrary.push(new addBook('The Dip', 'Seth Godin', '100', 'No'))
+// loop that adds books as cards to the dom.
 for (book of myLibrary) {
     console.log(book);
     let elemTitle = "<p class='title'>" + book.title + "</p>"
