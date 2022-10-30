@@ -1,3 +1,7 @@
+// Create array to hold book objects to be displayed.
+let myLibrary = [];
+
+// Create Obj constructor for creating book objects.
 function addBook(title, author, pages, read) {
     this.title = title
     this.author = author
@@ -7,6 +11,11 @@ function addBook(title, author, pages, read) {
         return `${title}, ${author}, ${pages} pages, ${read}`
     }
 }
+// Create func to add created books to myLibrary array. 
+function addBookToLibrary(title, author, pages, read) {
+    myLibrary.push(new addBook(`${title}`, `${author}`, `${pages}`, `${read}`))
+}
 
-const GameOfThrones = new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'not read yet')
-const Linchpin = new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Read many times.')
+// Add some books to array. 
+myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
+myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
