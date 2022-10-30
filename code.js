@@ -1,3 +1,8 @@
+// Define html elements.
+const library = document.getElementById('library')
+const addBookButton = document.getElementById('addbook')
+
+
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
 
