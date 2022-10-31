@@ -1,6 +1,9 @@
 // Define html elements.
 const library = document.getElementById('library')
 const addBookButton = document.getElementById('addbook')
+const modalClose = document.getElementsByClassName('close')
+const modalDiv  = document.getElementById('modal')
+
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -37,5 +40,11 @@ for (book of myLibrary) {
 
 // Event for button when pressed.
 addBookButton.addEventListener('click', () => {
-    alert('Hey this works.')
+    modalDiv.style.display = "block"
 })
+// When user clicks outside the modal content box close modal
+window.onclick = (event) => {
+    if (event.target == modalDiv) {
+        modalDiv.style.display = "none"
+    }
+}
