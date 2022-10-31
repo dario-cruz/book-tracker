@@ -22,12 +22,16 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h1>Input Book Details</h1>
-            <form action="">
+            <form id=" book-form" action="">
                 <input type="text" name="title" id="title" placeholder="Book Title">
                 <input type="text" name="author" id="author" placeholder="Book Author">
                 <input type="text" name="pages" id="pages" placeholder="# of pages">
-                <input type="text" name="read" id="read" placeholder="Read or not?">
-                <button id="submitbook" type="submit">Submit</button>
+                <label for="read">Did you read this book?</label>
+                <select name="read" id="read">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <button id="submit-book" type="submit">Submit</button>
             </form>
         </div>
     </div>

@@ -3,7 +3,8 @@ const library = document.getElementById('library')
 const addBookButton = document.getElementById('addbook')
 const modalClose = document.getElementsByClassName('close')
 const modalDiv  = document.getElementById('modal')
-const submitBook = document.getElementById('submitbook')
+const submitBook = document.getElementById('submit-book')
+const bookForm = document.getElementById('book-form')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -48,7 +49,15 @@ window.onclick = (event) => {
         modalDiv.style.display = "none"
     }
 }
-// Onclick add form data as book to book list.  
-submitBook.addEventListener('click', () => {
 
+// Prevent the default form submit behavior.
+bookForm.addEventListener('formdata', (e) => {
+    e.preventDefault()
+    new FormData(bookForm)
 })
+
+function callbackFunction(event) {
+    event.preventDefault()
+    let myFormData = new FormData(event.target)
+    console.log(myFormData)
+}
