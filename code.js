@@ -2,7 +2,6 @@
 const library = document.getElementById('library')
 const addBookButton = document.getElementById('addbook')
 
-
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
 
@@ -25,6 +24,7 @@ function addBookToLibrary(title, author, pages, read) {
 myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
 myLibrary.push(new addBook('The Dip', 'Seth Godin', '100', 'No'))
+
 // loop that adds books as cards to the dom.
 for (book of myLibrary) {
     console.log(book);
@@ -34,3 +34,8 @@ for (book of myLibrary) {
     let elemRead = "<p class='read'>" + book.read + "</p>"
     library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
 }
+
+// Event for button when pressed.
+addBookButton.addEventListener('click', () => {
+    alert('Hey this works.')
+})
