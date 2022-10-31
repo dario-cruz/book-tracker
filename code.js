@@ -3,7 +3,7 @@ const library = document.getElementById('library')
 const addBookButton = document.getElementById('addbook')
 const modalClose = document.getElementsByClassName('close')
 const modalDiv  = document.getElementById('modal')
-
+const submitBook = document.getElementById('submitbook')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -48,3 +48,7 @@ window.onclick = (event) => {
         modalDiv.style.display = "none"
     }
 }
+// Onclick add form data as book to book list.  
+submitBook.addEventListener('click', () => {
+
+})
