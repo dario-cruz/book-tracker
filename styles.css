@@ -21,9 +21,21 @@
 
 }
 
+/* Library book cards. */
+@keyframes card-animate {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 .card {
     width: 250px;
     height: 300px;
+    animation: card-animate .3s linear;
 }
 
 /* Rules for the modal that will open on add book button press. */
