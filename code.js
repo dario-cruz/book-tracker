@@ -18,6 +18,13 @@ function addBook(title, author, pages, read) {
     this.info = function() {
         return `${title}, ${author}, ${pages} pages, ${read}`
     }
+    this.add = () => {
+        let elemTitle = "<p class='title'>" + this.title + "</p>"
+        let elemAuthor = "<p class='author'>" + this.author + "</p>"
+        let elemPages = "<p class='pages'>" + this.pages + "</p>"
+        let elemRead = "<p class='read'>" + this.read + "</p>"
+        library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
+    }
 }
 // Create func to add created books to myLibrary array. 
 function addBookToLibrary(title, author, pages, read) {
@@ -51,13 +58,19 @@ window.onclick = (event) => {
 }
 
 // Prevent the default form submit behavior.
-bookForm.addEventListener('formdata', (e) => {
-    e.preventDefault()
-    new FormData(bookForm)
-})
+// calls the callbackFunction to extract the form data.
+bookForm.addEventListener('submit', callbackFunction)
 
+// 
 function callbackFunction(event) {
-    event.preventDefault()
-    let myFormData = new FormData(event.target)
-    console.log(myFormData)
+    event.preventDefault() // Prevents normal form submit. 
+    let myFormData = new FormData(event.target) 
+    let formDataObject = new addBook()
+    console.log(formDataObject)
+    myFormData.forEach((value, key) => (formDataObject[key] = value))
+    myLibrary.push(formDataObject)
+    let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
+    console.log(lastAdded)
+    lastAdded.add() // Adds the last item to the dom.
+    modalDiv.style.display = "none" // closes the modal
 }
