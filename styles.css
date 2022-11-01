@@ -23,6 +23,8 @@ body {
     text-align: center;
     grid-column: 2/3;
     font-family: 'Julius Sans One', sans-serif;
+    font-kerning: auto;
+    letter-spacing: 2px;
 }
 .left {
     grid-column: 1/2;
