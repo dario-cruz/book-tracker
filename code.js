@@ -66,11 +66,9 @@ function callbackFunction(event) {
     event.preventDefault() // Prevents normal form submit. 
     let myFormData = new FormData(event.target) 
     let formDataObject = new addBook()
-    console.log(formDataObject)
     myFormData.forEach((value, key) => (formDataObject[key] = value))
     myLibrary.push(formDataObject)
     let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
-    console.log(lastAdded)
     lastAdded.add() // Adds the last item to the dom.
     modalDiv.style.display = "none" // closes the modal
 }
