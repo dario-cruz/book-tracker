@@ -3,6 +3,7 @@ const library = document.getElementById('library')
 const addBookButton = document.getElementById('addbook')
 const modalClose = document.getElementsByClassName('close')
 const modalDiv  = document.getElementById('modal')
+const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
 
@@ -48,12 +49,16 @@ for (book of myLibrary) {
 
 // Event for button when pressed.
 addBookButton.addEventListener('click', () => {
-    modalDiv.style.display = "block"
+    modalDiv.style.visibility = "visible"
+    modalDiv.style.zIndex = "2"
+    modalContent.style.scale = "1"
 })
 // When user clicks outside the modal content box close modal
 window.onclick = (event) => {
     if (event.target == modalDiv) {
-        modalDiv.style.display = "none"
+        modalDiv.style.visibility = "hidden"
+        modalDiv.style.zIndex = "1"
+        modalContent.style.scale = "0"
     }
 }
 
