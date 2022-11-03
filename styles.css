@@ -27,6 +27,12 @@ body {
     font-kerning: auto;
     letter-spacing: 2px;
 }
+.left {
+    grid-column: 1/2;
+}
+.right {
+    grid-column: 3/4;
+}
 
 button {
     height: 50px;
@@ -38,14 +44,13 @@ button {
     text-transform: uppercase;
 }
 
-.left {
-    grid-column: 1/2;
+.bodygrid {
+    display: grid;
+    grid-template-columns: 1fr 920px 1fr;
+    grid-template-rows: 1fr;
 }
-.right {
-    grid-column: 3/4;
-}
-
 .library {
+    grid-column: 2/3;
     margin-top: 15px;
     width: 920px;
     margin-left: auto;
@@ -53,6 +58,30 @@ button {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+}
+.libright {
+    grid-column: 1/2;
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.libleft {
+    grid-column: 3/4;
+    height: calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.libright > .sidetext {
+    writing-mode: sideways-lr;
+    transform: scaleX(-1);
+}
+.sidetext {
+    font-family: 'Libre Barcode 39', cursive;
+    color: #b8ffc5;
+    writing-mode: sideways-lr;
+    font-size: 110pt;
 }
 
 /* Library book cards. */
