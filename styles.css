@@ -31,10 +31,9 @@ body {
 button {
     height: 50px;
     width: 100px;
-    border-radius: 0px;
     color: white;
     background-color: black;
-    border-color: 4px solid white;
+    border: 3px solid white;
     
 }
 
@@ -92,13 +91,25 @@ button {
 }
 /* Rules for modal content box. */
 .modal-content {
+    display: grid;
+    grid-template: repeat(4, 1fr) / 1fr;
     margin-top: 15%;
     margin-left: auto;
     margin-right: auto;
     height: 500px;
     width: 350px;
-    background-color: azure;
-    border-radius: 5px;
+    background-color: #b8ffc5;
+    border: 5px solid white;
     transition: all .5s ease-in-out;
     scale: 0;
+}
+.formbox {
+    grid-row: 2/4;
+}
+.topbox {
+    grid-row: 1/2;
+}
+
+.buttonbox {
+    grid-row: 4/5;
 }
