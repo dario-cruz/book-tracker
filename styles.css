@@ -34,7 +34,8 @@ button {
     color: white;
     background-color: black;
     border: 3px solid white;
-    
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .left {
@@ -74,6 +75,9 @@ button {
     animation: card-animate .3s linear;
     padding: 20px;
     border: 5px solid white;
+    font-size: xx-large;
+    line-height: 99%;
+    text-transform: uppercase;
 }
 
 /* Rules for the modal that will open on add book button press. */
