@@ -75,5 +75,7 @@ function callbackFunction(event) {
     myLibrary.push(formDataObject)
     let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
     lastAdded.add() // Adds the last item to the dom.
-    modalDiv.style.display = "none" // closes the modal
+    modalDiv.style.visibility = "hidden" // closes the modal
+    modalDiv.style.zIndex = "1"
+    // modalDiv.style.scale = "0"
 }
