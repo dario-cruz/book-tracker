@@ -136,14 +136,38 @@ button {
     border: 5px solid white;
     transition: all .5s ease-in-out;
     scale: 0;
-}
-.formbox {
-    grid-row: 2/4;
-}
-.topbox {
-    grid-row: 1/2;
+    font-family: 'Anton', sans-serif;
+    padding: 10px;
 }
 
+div.formbox {
+    grid-row: 2/4;
+}
+#book-form {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr;
+    height: 100%;
+    
+}
+.formauthor, .formpages, .formtitle {
+    display: grid;
+    
+}
+
+.topbox {
+    grid-row: 1/2;
+    display: flex;
+    justify-content: space-around;
+}
+.topbox > span {
+    font-size: 30pt;
+    height: 20px;
+}
 .buttonbox {
     grid-row: 4/5;
+    display: flex;
+    justify-content: right;
+
+    align-items: flex-end; 
 }
