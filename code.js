@@ -22,8 +22,8 @@ function addBook(title, author, pages, read) {
     this.add = () => {
         let elemTitle = "<p class='title'>" + this.title + "</p>"
         let elemAuthor = "<p class='author'>" + this.author + "</p>"
-        let elemPages = "<p class='pages'>" + this.pages + "</p>"
-        let elemRead = "<p class='read'>" + this.read + "</p>"
+        let elemPages = "<p class='pages'>" + "Pages: " + this.pages + "</p>"
+        let elemRead = "<p class='read'>" +"Read: "+ this.read + "</p>"
         library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
     }
 }
@@ -42,8 +42,8 @@ for (book of myLibrary) {
     console.log(book);
     let elemTitle = "<p class='title'>" + book.title + "</p>"
     let elemAuthor = "<p class='author'>" + book.author + "</p>"
-    let elemPages = "<p class='pages'>" + book.pages + "</p>"
-    let elemRead = "<p class='read'>" + book.read + "</p>"
+    let elemPages = "<p class='pages'>" + "Pages: " + book.pages + "</p>"
+    let elemRead = "<p class='read'>" +"Read: "+ book.read + "</p>"
     library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
 }
 

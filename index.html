@@ -48,19 +48,19 @@
                 <form id="book-form" action="">
                     <div class="formtitle">
                         <label id="labeltitle" for="title">Book Title</label>
-                        <input type="text" name="title" id="title" placeholder="Book Title">
+                        <input type="text" name="title" id="title" placeholder="Book Title" required>
                     </div>
                     <div class="formauthor">
                         <label id="labelauthor" for="author">Author</label>
-                        <input type="text" name="author" id="author" placeholder="Book Author">
+                        <input type="text" name="author" id="author" placeholder="Book Author" required>
                     </div>
                     <div class="formpages">
                         <label id="labelpages" for="pages">Amount of Pages ?</label>
-                        <input type="number" min="1" max="9000" name="pages" id="pages" placeholder="# of pages">
+                        <input type="number" min="1" max="9000" name="pages" id="pages" placeholder="# of pages" required>
                     </div>
                     <div class="readstatus">
                         <label id="labelread" for="read">Did you read this book?</label>
-                        <select name="read" id="read">
+                        <select name="read" id="read" required>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
                         </select>

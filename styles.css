@@ -154,6 +154,13 @@ div.formbox {
     display: grid;
     
 }
+.readstatus {
+    margin-top: 8px;
+}
+/* Adjust placement of form labels */
+#labeltitle, #labelauthor, #labelpages, #labelread {
+    padding-top: 7px;
+}
 
 .topbox {
     grid-row: 1/2;
@@ -165,6 +172,5 @@ div.formbox {
     grid-row: 4/5;
     display: flex;
     justify-content: right;
-
     align-items: flex-end; 
 }
