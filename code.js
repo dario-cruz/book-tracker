@@ -7,8 +7,8 @@ const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
 // Buttons for dom elems added. 
-const cardRemove = "<button class='cardbtn'>Remove</button>"
-const cardReadStatus = "<button class='cardbtn'>Change Status</button>"
+const cardRemove = "<button id='cardRmv' class='cardbtn'>Remove</button>"
+const cardReadStatus = "<button id='cardChgStat' class='cardbtn'>Change Status</button>"
 
 
 // Create array to hold book objects to be displayed.
@@ -28,7 +28,8 @@ function addBook(title, author, pages, read) {
         let elemAuthor = "<p class='author'>" + this.author + "</p>"
         let elemPages = "<p class='pages'>" + "Pages: " + this.pages + "</p>"
         let elemRead = "<p class='read'>" +"Read: "+ this.read + "</p>"
-        library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
+        let elemId = this.title.replaceAll(" ", "")
+        library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
     }
 }
 // Create func to add created books to myLibrary array. 
@@ -48,7 +49,8 @@ for (book of myLibrary) {
     let elemAuthor = "<p class='author'>" + book.author + "</p>"
     let elemPages = "<p class='pages'>" + "Pages: " + book.pages + "</p>"
     let elemRead = "<p class='read'>" +"Read: "+ book.read + "</p>"
-    library.innerHTML += "<div class='card'>" + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
+    let elemId = book.title.replaceAll(" ", "")
+    library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
 }
 
 // Event for button when pressed.
@@ -82,3 +84,30 @@ function callbackFunction(event) {
     modalDiv.style.visibility = "hidden" // closes the modal
     modalDiv.style.zIndex = "1"
 }
+
+// Remove button functionality.
+const deleteBtns = document.querySelectorAll('#cardRmv');
+
+deleteBtns.forEach( button => {
+    button.addEventListener('click', removeCard())
+})
+
+function removeCard() {
+}
+
+
+
+// function changestatus() {
+//     let pageStatus = this.clos
+//     if (pageStatus.innerHTML == "Read: No") {
+//         pageStatus.innerHTML = "Read: Yes";
+//     } else {
+//         pageStatus.innerHTML = "Read: No"
+//     }
+// }
+
+
+
+
+// const changeStatusBtn = document.getElementById('cardChgStat')
+// changeStatusBtn.addEventListener('click', changestatus())
