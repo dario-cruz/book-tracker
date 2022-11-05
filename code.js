@@ -6,6 +6,10 @@ const modalDiv  = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
+// Buttons for dom elems added. 
+const cardRemove = "<button class='cardbtn'>Remove</button>"
+const cardReadStatus = "<button class='cardbtn'>Change Status</button>"
+
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
