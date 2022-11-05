@@ -48,7 +48,7 @@ for (book of myLibrary) {
     let elemAuthor = "<p class='author'>" + book.author + "</p>"
     let elemPages = "<p class='pages'>" + "Pages: " + book.pages + "</p>"
     let elemRead = "<p class='read'>" +"Read: "+ book.read + "</p>"
-    library.innerHTML += "<div class='card'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>"
+    library.innerHTML += "<div class='card'>" + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
 }
 
 // Event for button when pressed.

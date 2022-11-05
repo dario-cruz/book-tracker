@@ -108,6 +108,14 @@ button {
     font-size: xx-large;
     line-height: 99%;
     text-transform: uppercase;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 80px;
+}
+.btncontainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* Rules for the modal that will open on add book button press. */
