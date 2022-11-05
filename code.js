@@ -91,7 +91,7 @@ const deleteBtns = document.querySelectorAll('.cardbtnrmv');
 
 deleteBtns.forEach( button => {
     button.addEventListener('click', () => {
-        this.closest('.card').remove()
+        button.closest('.card').remove()
     })
 })
 
