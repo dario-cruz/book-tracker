@@ -160,10 +160,7 @@ div.formbox {
     display: flex;
     justify-content: space-around;
 }
-.topbox > span {
-    font-size: 30pt;
-    height: 20px;
-}
+
 .buttonbox {
     grid-row: 4/5;
     display: flex;

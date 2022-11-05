@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./code.js" defer></script>
     <link rel="stylesheet" href="./styles.css">
-    <!-- Preconnects for google fonts. -->
+    <!-- Pre-connects for google fonts. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Custom Fonts Defined. -->
@@ -41,25 +41,25 @@
         <!-- Modal content. -->
         <div id="modal-content" class="modal-content">
             <div class="topbox">
-                <span class="close">&times;</span>
+                <!-- <span class="close">&times;</span> -->
                 <h1>Input Book Details</h1>
             </div>
             <div class="formbox">
                 <form id="book-form" action="">
                     <div class="formtitle">
-                        <label for="title">Book Title</label>
+                        <label id="labeltitle" for="title">Book Title</label>
                         <input type="text" name="title" id="title" placeholder="Book Title">
                     </div>
                     <div class="formauthor">
-                        <label for="author">Author</label>
+                        <label id="labelauthor" for="author">Author</label>
                         <input type="text" name="author" id="author" placeholder="Book Author">
                     </div>
                     <div class="formpages">
-                        <label for="pages">Amount of Pages ?</label>
+                        <label id="labelpages" for="pages">Amount of Pages ?</label>
                         <input type="number" min="1" max="9000" name="pages" id="pages" placeholder="# of pages">
                     </div>
                     <div class="readstatus">
-                        <label for="read">Did you read this book?</label>
+                        <label id="labelread" for="read">Did you read this book?</label>
                         <select name="read" id="read">
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
