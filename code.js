@@ -6,9 +6,10 @@ const modalDiv  = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
+
 // Buttons for dom elems added. 
-const cardRemove = "<button id='cardRmv' class='cardbtn'>Remove</button>"
-const cardReadStatus = "<button id='cardChgStat' class='cardbtn'>Change Status</button>"
+const cardRemove = "<button class='cardbtnrmv'>Remove</button>"
+const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
 
 
 // Create array to hold book objects to be displayed.
@@ -86,17 +87,20 @@ function callbackFunction(event) {
 }
 
 // Remove button functionality.
-const deleteBtns = document.querySelectorAll('#cardRmv');
+const deleteBtns = document.querySelectorAll('.cardbtnrmv');
 
 deleteBtns.forEach( button => {
-    button.addEventListener('click', removeCard())
+    button.addEventListener('click', () => {
+        this.closest('.card').remove()
+    })
 })
 
-function removeCard() {
-}
+// function removeCard() {
+//     this.parent('.card').remove()
+// }
 
 
-
+// Change status of if book is read or not.
 // function changestatus() {
 //     let pageStatus = this.clos
 //     if (pageStatus.innerHTML == "Read: No") {
