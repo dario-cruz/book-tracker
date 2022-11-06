@@ -24,12 +24,13 @@ function addBook(title, author, pages, read) {
     this.info = function() {
         return `${title}, ${author}, ${pages} pages, ${read}`
     }
+    // func to add book to dom. 
     this.add = () => {
         let elemTitle = "<p class='title'>" + this.title + "</p>"
         let elemAuthor = "<p class='author'>" + this.author + "</p>"
         let elemPages = "<p class='pages'>" + "Pages: " + this.pages + "</p>"
         let elemRead = "<p class='read'>" +"Read: "+ this.read + "</p>"
-        let elemId = this.title.replaceAll(" ", "")
+        let elemId = this.title.replaceAll(" ", "") // Creates card id from title.
         library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
     }
 }
@@ -73,7 +74,7 @@ window.onclick = (event) => {
 // calls the callbackFunction to extract the form data.
 bookForm.addEventListener('submit', callbackFunction)
 
-// 
+// Prevents default form behaviour. Converts form info to object data.
 function callbackFunction(event) {
     event.preventDefault() // Prevents normal form submit. 
     let myFormData = new FormData(event.target) 
