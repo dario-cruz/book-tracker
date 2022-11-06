@@ -85,34 +85,34 @@ function callbackFunction(event) {
     lastAdded.add() // Adds the last item to the dom.
     modalDiv.style.visibility = "hidden" // closes the modal
     modalDiv.style.zIndex = "1"
+    addBtnEvent()
 }
 
+// Add button functions on all dom buttons. 
+addBtnEvent()
+
 // Remove button functionality.
-const deleteBtns = document.querySelectorAll('.cardbtnrmv');
 
-deleteBtns.forEach( button => {
-    button.addEventListener('click', () => {
-        button.closest('.card').remove()
+// func to add event listener to dynamically added cards
+function addBtnEvent() {
+    let deleteBtns = document.querySelectorAll('.cardbtnrmv');
+    
+    deleteBtns.forEach( button => {
+        button.addEventListener('click', () => {
+            button.closest('.card').remove()
+        })
     })
-})
-
-// function removeCard() {
-//     this.parent('.card').remove()
-// }
-
-
-// Change status of if book is read or not.
-// function changestatus() {
-//     let pageStatus = this.clos
-//     if (pageStatus.innerHTML == "Read: No") {
-//         pageStatus.innerHTML = "Read: Yes";
-//     } else {
-//         pageStatus.innerHTML = "Read: No"
-//     }
-// }
-
-
-
-
-// const changeStatusBtn = document.getElementById('cardChgStat')
-// changeStatusBtn.addEventListener('click', changestatus())
+    
+    let cardObj = document.querySelectorAll('.card')
+    let chgReadBtn = document.querySelectorAll('.cardbtnchg')
+    
+    chgReadBtn.forEach( button => {
+        let readText = button.closest('.read')
+        console.log(readText.innerHTML)
+        if (readText.innerHTML == 'Read: Yes') {
+            readText.innerHTML = 'Read: No'
+        } else {
+            readText.innerHTML = 'Read: Yes'
+        }
+    })
+}
