@@ -188,7 +188,7 @@ div.formbox {
 /* Footer styling */
 footer{
     /* position: fixed; */
-    height: 80px;
+    height: 60px;
     width: 100vw;
     background-color: #b8ffc5;
 }
@@ -209,6 +209,10 @@ footer{
     justify-content: center;
     align-items: center;
     font-family: 'Anton', sans-serif;
+}
+.footergrid > .center > h1 {
+    font-size: x-large;
+    font-weight: 500;
 }
 .footergrid > .right {
     grid-area: right;
