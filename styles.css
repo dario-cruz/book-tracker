@@ -52,6 +52,7 @@ button {
 .library {
     grid-column: 2/3;
     margin-top: 15px;
+    margin-bottom: 15px;
     width: 920px;
     margin-left: auto;
     margin-right: auto;
@@ -209,6 +210,14 @@ footer{
     justify-content: center;
     align-items: center;
     font-family: 'Anton', sans-serif;
+}
+.footergrid > .center > a > img {
+    height: 40px;
+    width: 40px;
+}
+#github {
+    margin-right: 10px;
+    margin-left: 10px;
 }
 .footergrid > .center > h1 {
     font-size: x-large;
