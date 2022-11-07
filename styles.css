@@ -66,6 +66,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .libleft {
     grid-column: 3/4;
@@ -73,6 +74,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 .libright > .sidetext {
     writing-mode: sideways-lr;
@@ -181,4 +183,33 @@ div.formbox {
     display: flex;
     justify-content: right;
     align-items: flex-end; 
+}
+
+/* Footer styling */
+footer{
+    /* position: fixed; */
+    height: 80px;
+    width: 100vw;
+    background-color: #b8ffc5;
+}
+.footergrid {
+    height: 100%;
+    width: 100vw;
+    display: grid;
+    grid-template: 1fr / 1fr 3fr 1fr;
+    grid-template-areas: 
+    'left center right';
+}
+.footergrid > .left {
+    grid-area: left;
+}
+.footergrid > .center {
+    grid-area: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Anton', sans-serif;
+}
+.footergrid > .right {
+    grid-area: right;
 }

@@ -108,7 +108,6 @@ function addBtnEvent() {
     
     chgReadBtn.forEach( button => {
         let readText = button.closest('.read')
-        console.log(readText.innerHTML)
         if (readText.innerHTML == 'Read: Yes') {
             readText.innerHTML = 'Read: No'
         } else {
