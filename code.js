@@ -15,28 +15,26 @@ const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
 
-// Create Obj constructor for creating book objects.
-function addBook(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.info = function() {
+// Class for adding books to array.
+class addBook {
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+    }
+ 
+    info() {
         return `${title}, ${author}, ${pages} pages, ${read}`
     }
-    // func to add book to dom. 
-    this.add = () => {
-        let elemTitle = "<p class='title'>" + this.title + "</p>"
-        let elemAuthor = "<p class='author'>" + this.author + "</p>"
-        let elemPages = "<p class='pages'>" + "Pages: " + this.pages + "</p>"
-        let elemRead = "<p class='read'>" +"Read: "+ this.read + "</p>"
-        let elemId = this.title.replaceAll(" ", "") // Creates card id from title.
+    add() {
+        let elemTitle = `<p class='title'> ${this.title} </p>`
+        let elemAuthor = `<p class='author'> ${this.author} </p>`
+        let elemPages = `<p class='pages'>Pages: ${this.pages}</p>`
+        let elemRead = `<p class='read'>Read: ${this.read}</p>`
+        let elemId = this.title.replaceAll(" ", "")
         library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
     }
-}
-// Create func to add created books to myLibrary array. 
-function addBookToLibrary(title, author, pages, read) {
-    myLibrary.push(new addBook(`${title}`, `${author}`, `${pages}`, `${read}`))
 }
 
 // Add some books to array. 
@@ -78,9 +76,11 @@ bookForm.addEventListener('submit', callbackFunction)
 function callbackFunction(event) {
     event.preventDefault() // Prevents normal form submit. 
     let myFormData = new FormData(event.target) 
-    let formDataObject = new addBook()
-    myFormData.forEach((value, key) => (formDataObject[key] = value))
-    myLibrary.push(formDataObject)
+    let processedFormData = {}
+    myFormData.forEach((key, value) => (processedFormData[value] = key))
+    console.log(processedFormData)
+    let newBook = new addBook(processedFormData.title, processedFormData.author, processedFormData.pages, processedFormData.read)
+    myLibrary.push(newBook)
     let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
     lastAdded.add() // Adds the last item to the dom.
     modalDiv.style.visibility = "hidden" // closes the modal
