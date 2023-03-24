@@ -57,6 +57,11 @@ function retrieveBooksFromLocal() {
     }
 }
 
+// Func for clearing local storage.
+function clearStorage() {
+    localStorage.clear()
+}
+
 // Add some books to array. 
 myLibrary.push(new book('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
