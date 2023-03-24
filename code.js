@@ -6,6 +6,7 @@ const modalDiv  = document.getElementById('modal')
 const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
+const clearBtn = document.getElementById('clear-storage')
 
 // Buttons for dom elems added. 
 const cardRemove = "<button class='cardbtnrmv'>Remove</button>"
@@ -137,3 +138,7 @@ function addBtnEvent() {
         }
     })
 }
+
+// Create event for clearStorage button
+
+clearBtn.addEventListener('click', clearStorage())
