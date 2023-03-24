@@ -40,7 +40,7 @@ class book {
 // Function for injecting new book objects into localStorage.
 function storeBookInfo(bookObj) {
     // Stringify the book object and store in in localStorage.
-    localStorage.setItem(bookObj, JSON.stringify(bookObj))
+    localStorage.setItem(bookObj.title, JSON.stringify(bookObj))
 }
 
 // Function for storing all books 
