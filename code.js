@@ -37,6 +37,14 @@ class addBook {
     }
 }
 
+// Function for injecting new book objects into localStorage.
+function storeBookInfo() {
+
+}
+
+// Function for retrieving stored books from localStorage.
+
+
 // Add some books to array. 
 myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
@@ -45,12 +53,8 @@ myLibrary.push(new addBook('The Dip', 'Seth Godin', '100', 'No'))
 // loop that adds predefined books as cards to the dom.
 for (book of myLibrary) {
     console.log(book);
-    let elemTitle = "<p class='title'>" + book.title + "</p>"
-    let elemAuthor = "<p class='author'>" + book.author + "</p>"
-    let elemPages = "<p class='pages'>" + "Pages: " + book.pages + "</p>"
-    let elemRead = "<p class='read'>" +"Read: "+ book.read + "</p>"
-    let elemId = book.title.replaceAll(" ", "")
-    library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
+    // Add the book to the dom.
+    book.add()
 }
 
 // Event for button when pressed.
@@ -69,11 +73,11 @@ window.onclick = (event) => {
 }
 
 // Prevent the default form submit behavior.
-// calls the callbackFunction to extract the form data.
-bookForm.addEventListener('submit', callbackFunction)
+// calls the formSubmit to extract the form data.
+bookForm.addEventListener('submit', formSubmit)
 
 // Prevents default form behaviour. Converts form info to object data.
-function callbackFunction(event) {
+function formSubmit(event) {
     event.preventDefault() // Prevents normal form submit. 
     let myFormData = new FormData(event.target) 
     let processedFormData = {}
