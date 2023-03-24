@@ -38,17 +38,30 @@ class addBook {
 }
 
 // Function for injecting new book objects into localStorage.
-function storeBookInfo() {
+function storeBookInfo(bookObj) {
+    // Stringify the book object and store in in localStorage.
+    localStorage.setItem(bookObj, JSON.stringify(bookObj))
+}
 
+// Function for storing all books 
+function storeMyLibrary() {
+    myLibrary.forEach(book => storeBookInfo(book))
 }
 
 // Function for retrieving stored books from localStorage.
-
+function retrieveBooksFromLocal() {
+    for (let key of localStorage.keys()) {
+        let value = localStorage.getItem(key)
+        value = JSON.parse(value)
+        myLibrary.push(value)
+    }
+}
 
 // Add some books to array. 
 myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
 myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
 myLibrary.push(new addBook('The Dip', 'Seth Godin', '100', 'No'))
+
 
 // loop that adds predefined books as cards to the dom.
 for (book of myLibrary) {
