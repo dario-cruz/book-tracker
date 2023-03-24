@@ -16,7 +16,7 @@ const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
 let myLibrary = [];
 
 // Class for adding books to array.
-class addBook {
+class book {
     constructor(title, author, pages, read) {
         this.title = title
         this.author = author
@@ -58,9 +58,9 @@ function retrieveBooksFromLocal() {
 }
 
 // Add some books to array. 
-myLibrary.push(new addBook('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
-myLibrary.push(new addBook('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
-myLibrary.push(new addBook('The Dip', 'Seth Godin', '100', 'No'))
+myLibrary.push(new book('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
+myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
+myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
 
 
 // loop that adds predefined books as cards to the dom.
@@ -96,7 +96,7 @@ function formSubmit(event) {
     let processedFormData = {}
     myFormData.forEach((key, value) => (processedFormData[value] = key))
     console.log(processedFormData)
-    let newBook = new addBook(processedFormData.title, processedFormData.author, processedFormData.pages, processedFormData.read)
+    let newBook = new book(processedFormData.title, processedFormData.author, processedFormData.pages, processedFormData.read)
     myLibrary.push(newBook)
     let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
     lastAdded.add() // Adds the last item to the dom.
