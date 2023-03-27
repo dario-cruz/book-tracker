@@ -9,8 +9,16 @@ const bookForm = document.getElementById('book-form')
 const clearBtn = document.getElementById('clear-storage')
 
 // Buttons for dom elems added. 
-const cardRemove = "<button class='cardbtnrmv'>Remove</button>"
-const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
+const cardRemove = document.createElement('button')
+cardRemove.setAttribute('class', 'cardbtnrmv')
+cardRemove.innerText = 'Remove'
+
+const cardReadStatus = document.createElement('button')
+cardReadStatus.setAttribute('class', 'cardbtnchg')
+cardReadStatus.innerText = 'Change Status'
+
+// const cardRemove = "<button class='cardbtnrmv'>Remove</button>"
+// const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
 
 
 // Create array to hold book objects to be displayed.
@@ -35,6 +43,40 @@ class book {
         let elemRead = `<p class='read'>Read: ${this.read}</p>`
         let elemId = this.title.replaceAll(" ", "")
         library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
+    }
+    makeCard(targetElem) {
+        // Create and set attributes for all dom elements. 
+        // Append the final, completed, card element to the targetElem.
+        
+        let cardDiv = document.createElement('div')
+        // Convert object title into usable ID for element.
+        let elemId = this.title.replaceAll(" ", "-")
+        cardDiv.setAttribute('id', `${elemId}`)
+        cardDiv.setAttribute('class', 'card')
+
+        let cardContent = document.createElement('div')
+        cardContent.setAttribute('class', 'card-content')
+        
+        let bookTitle = document.createElement('p')
+        bookTitle.setAttribute('class', 'title')
+        bookTitle.innerText = `${this.title}`
+
+        let bookAuthor = document.createElement('p')
+        bookAuthor.setAttribute('class', 'author')
+        bookAuthor.innerText = `${this.author}`
+
+        let bookPages = document.createElement('p')
+        bookPages.setAttribute('class', 'pages')
+        bookPages.innerText = `Pages: ${this.pages}`
+
+        let bookStatus = document.createElement('p')
+        bookStatus.setAttribute('class', 'status')
+        bookStatus.innerText = `Read: ${this.read}`
+
+        // Append the dom elems.
+        cardDiv.append(cardContent, cardReadStatus, cardRemove)
+
+        cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
     }
 }
 
