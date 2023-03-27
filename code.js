@@ -74,9 +74,11 @@ class book {
         bookStatus.innerText = `Read: ${this.read}`
 
         // Append the dom elems.
+        cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
+        
         cardDiv.append(cardContent, cardReadStatus, cardRemove)
 
-        cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
+        targetElem.append(cardDiv)
     }
 }
 
