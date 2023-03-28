@@ -148,18 +148,33 @@ function clearStorage() {
     localStorage.clear()
 }
 
-// Add some books to array. 
-myLibrary.push(new book('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
-myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
-myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
-
-
-// loop that adds predefined books as cards to the dom.
-for (book of myLibrary) {
-    console.log(book.info());
-    // Add the book to the dom.
-    book.makeCard(library)
+// Add all object in myLibrary to the DOM.
+function libToDom() {
+    // loop that adds predefined books as cards to the dom.
+    for (book of myLibrary) {
+        console.log(book.info());
+        // Add the book to the dom.
+        book.makeCard(library)
+    }
 }
+
+// IIFE for checking localStorage and adding starter content if there is none.
+(function startUpSequence() {
+    if (window.localStorage.length === 0) {
+        // Add some books to array. 
+        myLibrary.push(new book('Game of Thrones', 'J.R.R. Martin', '500', 'No'))
+        myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
+        myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
+        storeMyLibrary()
+        libToDom()
+    
+    } else {
+        retrieveBooksFromLocal()
+        libToDom()
+    }
+})()
+
+
 
 // Event for button when pressed.
 addBookButton.addEventListener('click', () => {

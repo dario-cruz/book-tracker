@@ -227,3 +227,8 @@ footer{
 .footergrid > .right {
     grid-area: right;
 }
+
+/* Stop users from selecting text in card element. */
+.card-content > p {
+    user-select: none;
+}
