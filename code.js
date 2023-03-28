@@ -84,6 +84,10 @@ class book {
         cardReadStatus.addEventListener('click', () => {
             this.changeStatus(this)
         })
+
+        cardRemove.addEventListener('click', () => {
+            this.removeCard(this)
+        })
     }
     // Class func for adjusting the status of a book.
     // Options should be READ, NOT READ, IN PROGRESS.
@@ -101,11 +105,12 @@ class book {
         }
         
         // Update localStorage for changes made.
-
+        clearStorage()
+        storeMyLibrary()
     }
     removeCard(targetObj) {
         // Remove the target book from the library array.
-        const removeBook = object => object.title = targetObj.title
+        const removeBook = object => object.title !== targetObj.title
         myLibrary = myLibrary.filter(removeBook)
         console.log(myLibrary)
 
@@ -113,7 +118,8 @@ class book {
         document.getElementById(`${targetObj.elemId}`).remove()
 
         // Update localStorage to reflect changes.
-        
+        clearStorage()
+        storeMyLibrary()
     }
 }
 
