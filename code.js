@@ -136,11 +136,12 @@ function storeMyLibrary() {
 
 // Function for retrieving stored books from localStorage.
 function retrieveBooksFromLocal() {
-    for (let key of localStorage.keys()) {
+    Object.keys(localStorage).forEach(function(key) {
         let value = localStorage.getItem(key)
         value = JSON.parse(value)
+        console.log(value)
         myLibrary.push(value)
-    }
+    })
 }
 
 // Func for clearing local storage.
@@ -149,13 +150,13 @@ function clearStorage() {
 }
 
 // Add all object in myLibrary to the DOM.
-function libToDom() {
+function libToDom(targetArray) {
+    targetArray.forEach(book => book.makeCard(library))
     // loop that adds predefined books as cards to the dom.
-    for (book of myLibrary) {
-        console.log(book.info());
-        // Add the book to the dom.
-        book.makeCard(library)
-    }
+    // for (obj of targetArray) {
+    //     // Add the book to the dom.
+    //     obj.makeCard(library)
+    // }
 }
 
 // IIFE for checking localStorage and adding starter content if there is none.
@@ -166,11 +167,11 @@ function libToDom() {
         myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
         myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
         storeMyLibrary()
-        libToDom()
+        libToDom(myLibrary)
     
     } else {
         retrieveBooksFromLocal()
-        libToDom()
+        libToDom(myLibrary)
     }
 })()
 
@@ -216,27 +217,26 @@ function formSubmit(event) {
 // Remove button functionality.
 
 // func to add event listener to dynamically added cards
-function addBtnEvent() {
-    let deleteBtns = document.querySelectorAll('.cardbtnrmv');
+// function addBtnEvent() {
+//     let deleteBtns = document.querySelectorAll('.cardbtnrmv');
     
-    deleteBtns.forEach( button => {
-        button.addEventListener('click', () => {
-            button.closest('.card').remove()
-        })
-    })
+//     deleteBtns.forEach( button => {
+//         button.addEventListener('click', () => {
+//             button.closest('.card').remove()
+//         })
+//     })
     
-    let cardObj = document.querySelectorAll('.card')
-    let chgReadBtn = document.querySelectorAll('.cardbtnchg')
+//     let chgReadBtn = document.querySelectorAll('.cardbtnchg')
     
-    chgReadBtn.forEach( button => {
-        let readText = button.closest('.read')
-        if (readText.innerHTML == 'Read: Yes') {
-            readText.innerHTML = 'Read: No'
-        } else {
-            readText.innerHTML = 'Read: Yes'
-        }
-    })
-}
+//     chgReadBtn.forEach( button => {
+//         let readText = button.closest('.read')
+//         if (readText.innerHTML == 'Read: Yes') {
+//             readText.innerHTML = 'Read: No'
+//         } else {
+//             readText.innerHTML = 'Read: Yes'
+//         }
+//     })
+// }
 
 // Create event for clearStorage button
 
