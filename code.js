@@ -88,11 +88,10 @@ class book {
     // Class func for adjusting the status of a book.
     // Options should be READ, NOT READ, IN PROGRESS.
     changeStatus(targetObj) {
-        let thisElem = document.getElementById(`${targetObj.elemId}`)
-        console.log(thisElem)
+        // Define bookStatus with query and css selector.
         let bookStatus = document.querySelector(`[id = '${targetObj.elemId}'] > .card-content > .status`)
-        console.log(bookStatus)
-        console.log(`${targetObj.elemId}`)
+        
+        // Logic for changing object and dom book read status.
         if (targetObj.read == 'Yes') {
             targetObj.read = 'No'
             bookStatus.innerText = `Read: ${targetObj.read}`
