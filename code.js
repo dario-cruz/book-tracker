@@ -81,22 +81,24 @@ class book {
         targetElem.append(cardDiv)
 
         // Events for all buttons.
-        cardReadStatus.addEventListener('click', this.changeStatus)
+        cardReadStatus.addEventListener('click', () => {
+            this.changeStatus(this)
+        })
     }
     // Class func for adjusting the status of a book.
     // Options should be READ, NOT READ, IN PROGRESS.
-    changeStatus() {
-        let thisElem = document.getElementById(`${this.elemId}`)
+    changeStatus(targetObj) {
+        let thisElem = document.getElementById(`${targetObj.elemId}`)
         console.log(thisElem)
-        let bookStatus = document.querySelector(`[id = '${this.elemId}'] > .card-content > .status`)
+        let bookStatus = document.querySelector(`[id = '${targetObj.elemId}'] > .card-content > .status`)
         console.log(bookStatus)
-        console.log(`${this.elemId}`)
-        if (this.read == 'Yes') {
-            this.read = 'No'
-            bookStatus.innerText = `Read: ${this.read}`
+        console.log(`${targetObj.elemId}`)
+        if (targetObj.read == 'Yes') {
+            targetObj.read = 'No'
+            bookStatus.innerText = `Read: ${targetObj.read}`
         } else {
-            this.read = 'Yes'
-            bookStatus.innerText = `Read: ${this.read}`
+            targetObj.read = 'Yes'
+            bookStatus.innerText = `Read: ${targetObj.read}`
         }
     }
     removeCard() {
