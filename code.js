@@ -99,9 +99,21 @@ class book {
             targetObj.read = 'Yes'
             bookStatus.innerText = `Read: ${targetObj.read}`
         }
-    }
-    removeCard() {
+        
+        // Update localStorage for changes made.
 
+    }
+    removeCard(targetObj) {
+        // Remove the target book from the library array.
+        const removeBook = object => object.title = targetObj.title
+        myLibrary = myLibrary.filter(removeBook)
+        console.log(myLibrary)
+
+        // Remove the associated dom element.
+        document.getElementById(`${targetObj.elemId}`).remove()
+
+        // Update localStorage to reflect changes.
+        
     }
 }
 
