@@ -17,9 +17,6 @@ const cardReadStatus = document.createElement('button')
 cardReadStatus.setAttribute('class', 'cardbtnchg')
 cardReadStatus.innerText = 'Change Status'
 
-// const cardRemove = "<button class='cardbtnrmv'>Remove</button>"
-// const cardReadStatus = "<button class='cardbtnchg'>Change Status</button>"
-
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -31,18 +28,12 @@ class book {
         this.author = author
         this.pages = pages
         this.read = read
+        this.elemId = this.title.replaceAll(' ', '-')
     }
  
     info() {
-        return `${title}, ${author}, ${pages} pages, ${read}`
-    }
-    add() {
-        let elemTitle = `<p class='title'> ${this.title} </p>`
-        let elemAuthor = `<p class='author'> ${this.author} </p>`
-        let elemPages = `<p class='pages'>Pages: ${this.pages}</p>`
-        let elemRead = `<p class='read'>Read: ${this.read}</p>`
-        let elemId = this.title.replaceAll(" ", "")
-        library.innerHTML += `<div id='${elemId}' class='card'>` + "<div class='cardtext'>" + elemTitle + elemAuthor + elemPages + elemRead + "</div>" + "<div class='btncontainer'>" + cardReadStatus + cardRemove + "</div>" + "</div>"
+        // return this
+        return `${this.title}, ${this.author}, ${this.pages} pages, Read? ${this.read}, ID: ${this.elemId}`
     }
     makeCard(targetElem) {
         // Create and set attributes for all dom elements. 
@@ -50,8 +41,8 @@ class book {
         
         let cardDiv = document.createElement('div')
         // Convert object title into usable ID for element.
-        let elemId = this.title.replaceAll(" ", "-")
-        cardDiv.setAttribute('id', `${elemId}`)
+        // let elemId = this.title.replaceAll(" ", "-")
+        cardDiv.setAttribute('id', `${this.elemId}`)
         cardDiv.setAttribute('class', 'card')
 
         let cardContent = document.createElement('div')
@@ -73,12 +64,43 @@ class book {
         bookStatus.setAttribute('class', 'status')
         bookStatus.innerText = `Read: ${this.read}`
 
+        // Buttons for dom elems added. 
+        let cardRemove = document.createElement('button')
+        cardRemove.setAttribute('class', 'cardbtnrmv')
+        cardRemove.innerText = 'Remove'
+
+        let cardReadStatus = document.createElement('button')
+        cardReadStatus.setAttribute('class', 'cardbtnchg')
+        cardReadStatus.innerText = 'Change Status'
+
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
         
         cardDiv.append(cardContent, cardReadStatus, cardRemove)
-
+        
         targetElem.append(cardDiv)
+
+        // Events for all buttons.
+        cardReadStatus.addEventListener('click', this.changeStatus)
+    }
+    // Class func for adjusting the status of a book.
+    // Options should be READ, NOT READ, IN PROGRESS.
+    changeStatus() {
+        let thisElem = document.getElementById(`${this.elemId}`)
+        console.log(thisElem)
+        let bookStatus = document.querySelector(`[id = '${this.elemId}'] > .card-content > .status`)
+        console.log(bookStatus)
+        console.log(`${this.elemId}`)
+        if (this.read == 'Yes') {
+            this.read = 'No'
+            bookStatus.innerText = `Read: ${this.read}`
+        } else {
+            this.read = 'Yes'
+            bookStatus.innerText = `Read: ${this.read}`
+        }
+    }
+    removeCard() {
+
     }
 }
 
@@ -115,9 +137,9 @@ myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
 
 // loop that adds predefined books as cards to the dom.
 for (book of myLibrary) {
-    console.log(book);
+    console.log(book.info());
     // Add the book to the dom.
-    book.add()
+    book.makeCard(library)
 }
 
 // Event for button when pressed.
@@ -135,11 +157,10 @@ window.onclick = (event) => {
     }
 }
 
-// Prevent the default form submit behavior.
 // calls the formSubmit to extract the form data.
 bookForm.addEventListener('submit', formSubmit)
 
-// Prevents default form behaviour. Converts form info to object data.
+// Prevents default form behavior. Converts form info to object data.
 function formSubmit(event) {
     event.preventDefault() // Prevents normal form submit. 
     let myFormData = new FormData(event.target) 
@@ -156,7 +177,7 @@ function formSubmit(event) {
 }
 
 // Add button functions on all dom buttons. 
-addBtnEvent()
+// addBtnEvent()
 
 // Remove button functionality.
 
@@ -186,3 +207,15 @@ function addBtnEvent() {
 // Create event for clearStorage button
 
 clearBtn.addEventListener('click', clearStorage())
+
+
+// Create form validation constraints for input elements.
+
+const titleInput = document.getElementById('title')
+titleInput.addEventListener('input', (event) => {
+    if (titleInput.validity.patternMismatch) {
+        titleInput.setCustomValidity('Titles can only contain letters and spaces')
+    } else {
+        titleInput.setCustomValidity('')
+    }
+})

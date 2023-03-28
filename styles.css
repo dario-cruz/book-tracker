@@ -42,6 +42,7 @@ button {
     border: 3px solid white;
     font-weight: 900;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .bodygrid {
