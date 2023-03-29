@@ -151,12 +151,8 @@ function clearStorage() {
 
 // Add all object in myLibrary to the DOM.
 function libToDom(targetArray) {
-    targetArray.forEach(book => book.makeCard(library))
     // loop that adds predefined books as cards to the dom.
-    // for (obj of targetArray) {
-    //     // Add the book to the dom.
-    //     obj.makeCard(library)
-    // }
+    targetArray.forEach(book => book.makeCard(library))
 }
 
 // IIFE for checking localStorage and adding starter content if there is none.
