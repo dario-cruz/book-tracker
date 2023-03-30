@@ -9,6 +9,7 @@ const bookForm = document.getElementById('book-form')
 const clearBtn = document.getElementById('clear-storage')
 const editModalDiv = document.getElementById('edit-modal')
 const editModalContent = document.getElementById('edit-modal-content')
+const editSubmitButton = document.getElementById('edit-submit-button')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -228,6 +229,11 @@ function formSubmit(event) {
     modalDiv.style.visibility = "hidden" // closes the modal
     modalDiv.style.zIndex = "1"
     addBtnEvent()
+}
+
+function editFormSubmit (event) {
+    event.preventDefault()
+    
 }
 
 // Func for clearing local storage.

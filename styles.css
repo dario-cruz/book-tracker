@@ -187,6 +187,9 @@ div.formbox {
     align-items: flex-end; 
 }
 
+.edit-modal {
+    
+}
 /* Footer styling */
 footer{
     /* position: fixed; */
