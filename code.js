@@ -7,6 +7,8 @@ const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
 const clearBtn = document.getElementById('clear-storage')
+const editModalDiv = document.getElementById('edit-modal')
+const editModalContent = document.getElementById('edit-modal-content')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -67,6 +69,20 @@ class book {
         editBookBtn.setAttribute('class', 'card-edit-button')
         editBookBtn.setAttribute('id', 'card-edit-button')
         editBookBtn.innerText = 'Edit'
+
+        editBookBtn.addEventListener('click', (e) => {
+            e.preventDefault()
+            editModalDiv.style.visibility = "visible"
+            editModalDiv.style.zIndex = "2"
+            editModalContent.style.scale = "1"
+        })
+        window.onclick = (event) => {
+            if (event.target == editModalDiv) {
+                editModalDiv.style.visibility = "hidden"
+                editModalDiv.style.zIndex = "1"
+                editModalContent.style.scale = "0"
+            }
+        }
 
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
