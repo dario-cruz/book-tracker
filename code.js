@@ -72,6 +72,24 @@ class book {
 
         editBookBtn.addEventListener('click', (e) => {
             e.preventDefault()
+            
+            // Define all the the elements needed.
+            let editTitle = document.getElementById('edit-title')
+            let editAuthor = document.getElementById('edit-author')
+            let editPages = document.getElementById('edit-pages')
+            let editStatus = document.getElementById('edit-status')
+            let theHeading = document.querySelector('.topbox > .modal-heading')
+
+            // Update the heading of modal to reflect current obj.
+            theHeading.innerText = `Editing: ${this.title}`
+
+            // Update the values to match the target object.
+            editTitle.value = this.title
+            editAuthor.value = this.author
+            editPages.value = this.pages
+            editStatus.value = this.read
+
+            // Change the visibility of the needed element. 
             editModalDiv.style.visibility = "visible"
             editModalDiv.style.zIndex = "2"
             editModalContent.style.scale = "1"
