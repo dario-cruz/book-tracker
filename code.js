@@ -63,6 +63,12 @@ class book {
         cardReadStatus.setAttribute('class', 'cardbtnchg')
         cardReadStatus.innerText = 'Change Status'
 
+        let editBookBtn = document.createElement('button')
+        editBookBtn.setAttribute('class', 'card-edit-button')
+        editBookBtn.setAttribute('id', 'card-edit-button')
+        editBookBtn.innerText = 'Edit'
+        
+
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
         
@@ -138,10 +144,7 @@ function retrieveBooksFromLocal() {
     })
 }
 
-// Func for clearing local storage.
-function clearStorage() {
-    localStorage.clear()
-}
+
 
 // IIFE for checking localStorage and adding starter content if there is none.
 (function startUpSequence() {
@@ -194,8 +197,12 @@ function formSubmit(event) {
     addBtnEvent()
 }
 
-// Create event for clearStorage button
+// Func for clearing local storage.
+function clearStorage() {
+    localStorage.clear()
+}
 
+// Create event for clearStorage button
 clearBtn.addEventListener('click', clearStorage())
 
 
