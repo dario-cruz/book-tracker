@@ -67,12 +67,11 @@ class book {
         editBookBtn.setAttribute('class', 'card-edit-button')
         editBookBtn.setAttribute('id', 'card-edit-button')
         editBookBtn.innerText = 'Edit'
-        
 
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
         
-        cardDiv.append(cardContent, cardReadStatus, cardRemove)
+        cardDiv.append(cardContent, cardReadStatus, cardRemove, editBookBtn)
         
         targetElem.append(cardDiv)
 
@@ -191,7 +190,7 @@ function formSubmit(event) {
     let newBook = new book(processedFormData.title, processedFormData.author, processedFormData.pages, processedFormData.read)
     myLibrary.push(newBook)
     let lastAdded = myLibrary[myLibrary.length - 1] // Defines the last obj added to array.
-    lastAdded.add() // Adds the last item to the dom.
+    lastAdded.makeCard(library) // Adds the last item to the dom.
     modalDiv.style.visibility = "hidden" // closes the modal
     modalDiv.style.zIndex = "1"
     addBtnEvent()
@@ -208,11 +207,11 @@ clearBtn.addEventListener('click', clearStorage())
 
 // Create form validation constraints for input elements.
 
-const titleInput = document.getElementById('title')
-titleInput.addEventListener('input', (event) => {
-    if (titleInput.validity.patternMismatch) {
-        titleInput.setCustomValidity('Titles can only contain letters and spaces')
-    } else {
-        titleInput.setCustomValidity('')
-    }
-})
+// const titleInput = document.getElementById('title')
+// titleInput.addEventListener('input', (event) => {
+//     if (titleInput.validity.patternMismatch) {
+//         titleInput.setCustomValidity('Titles can only contain letters and spaces')
+//     } else {
+//         titleInput.setCustomValidity('')
+//     }
+// })
