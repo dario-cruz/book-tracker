@@ -8,16 +8,6 @@ const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
 const clearBtn = document.getElementById('clear-storage')
 
-// Buttons for dom elems added. 
-const cardRemove = document.createElement('button')
-cardRemove.setAttribute('class', 'cardbtnrmv')
-cardRemove.innerText = 'Remove'
-
-const cardReadStatus = document.createElement('button')
-cardReadStatus.setAttribute('class', 'cardbtnchg')
-cardReadStatus.innerText = 'Change Status'
-
-
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
 
@@ -140,6 +130,10 @@ function retrieveBooksFromLocal() {
         let value = localStorage.getItem(key)
         value = JSON.parse(value)
         console.log(value)
+        // Set prototype of object to restore class funcs.
+        Object.setPrototypeOf(value, book.prototype)
+
+        // Add obtained data objects to the array
         myLibrary.push(value)
     })
 }
@@ -147,16 +141,6 @@ function retrieveBooksFromLocal() {
 // Func for clearing local storage.
 function clearStorage() {
     localStorage.clear()
-}
-
-// Add all object in myLibrary to the DOM.
-function libToDom(targetArray) {
-    targetArray.forEach(book => book.makeCard(library))
-    // loop that adds predefined books as cards to the dom.
-    // for (obj of targetArray) {
-    //     // Add the book to the dom.
-    //     obj.makeCard(library)
-    // }
 }
 
 // IIFE for checking localStorage and adding starter content if there is none.
@@ -167,11 +151,10 @@ function libToDom(targetArray) {
         myLibrary.push(new book('Linchpin: How to be Indispensible', 'Seth Godin', '200', 'Yes'))
         myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
         storeMyLibrary()
-        libToDom(myLibrary)
-    
+        myLibrary.forEach(item => item.makeCard(library))
     } else {
         retrieveBooksFromLocal()
-        libToDom(myLibrary)
+        myLibrary.forEach(item => item.makeCard(library))
     }
 })()
 
@@ -210,33 +193,6 @@ function formSubmit(event) {
     modalDiv.style.zIndex = "1"
     addBtnEvent()
 }
-
-// Add button functions on all dom buttons. 
-// addBtnEvent()
-
-// Remove button functionality.
-
-// func to add event listener to dynamically added cards
-// function addBtnEvent() {
-//     let deleteBtns = document.querySelectorAll('.cardbtnrmv');
-    
-//     deleteBtns.forEach( button => {
-//         button.addEventListener('click', () => {
-//             button.closest('.card').remove()
-//         })
-//     })
-    
-//     let chgReadBtn = document.querySelectorAll('.cardbtnchg')
-    
-//     chgReadBtn.forEach( button => {
-//         let readText = button.closest('.read')
-//         if (readText.innerHTML == 'Read: Yes') {
-//             readText.innerHTML = 'Read: No'
-//         } else {
-//             readText.innerHTML = 'Read: Yes'
-//         }
-//     })
-// }
 
 // Create event for clearStorage button
 
