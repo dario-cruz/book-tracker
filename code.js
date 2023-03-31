@@ -15,7 +15,7 @@ const editSubmitButton = document.getElementById('edit-submit-button')
 const editTitle = document.getElementById('edit-title')
 const editAuthor = document.getElementById('edit-author')
 const editPage = document.getElementById('edit-pages')
-const editStatus = document.getElementById('edit-pages')
+const editStatus = document.getElementById('edit-status')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -81,11 +81,7 @@ class book {
             e.preventDefault()
             
             // Define all the the elements needed.
-            let editTitle = document.getElementById('edit-title')
-            let editAuthor = document.getElementById('edit-author')
-            let editPages = document.getElementById('edit-pages')
-            let editStatus = document.getElementById('edit-status')
-            let theHeading = document.querySelector('.topbox > .modal-heading')
+            let theHeading = document.querySelector('#edit-modal-content > .topbox > .modal-heading')
 
             // Update the heading of modal to reflect current obj.
             theHeading.innerText = `Editing: ${this.title}`
@@ -93,7 +89,7 @@ class book {
             // Update the values to match the target object.
             editTitle.value = this.title
             editAuthor.value = this.author
-            editPages.value = this.pages
+            editPage.value = this.pages
             editStatus.value = this.read
 
             // Change the visibility of the needed element. 
@@ -105,9 +101,7 @@ class book {
 
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
-        
         cardDiv.append(cardContent, cardReadStatus, cardRemove, editBookBtn)
-        
         targetElem.append(cardDiv)
 
         // Events for all buttons.
@@ -119,6 +113,14 @@ class book {
             this.removeCard(this)
         })
     }
+
+    editSubmit() {
+        let editSubmitForm = document.getElementById('edit-book-form')
+        editSubmitForm.addEventListener('submit', () => {
+            
+        })
+    }
+
     // Class func for adjusting the status of a book.
     // Options should be READ, NOT READ, IN PROGRESS.
     changeStatus(targetObj) {
@@ -240,6 +242,7 @@ function formSubmit(event) {
 // Update object that was edited, update DOM with new object data.
 function editFormSubmit (event) {
     event.preventDefault()
+    
     
 }
 
