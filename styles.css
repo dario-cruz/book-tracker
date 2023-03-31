@@ -43,6 +43,7 @@ button {
     font-weight: 900;
     text-transform: uppercase;
     cursor: pointer;
+    user-select: none;
 }
 
 .bodygrid {
@@ -170,7 +171,7 @@ div.formbox {
     margin-top: 8px;
 }
 /* Adjust placement of form labels */
-#labeltitle, #labelauthor, #labelpages, #labelread {
+.label {
     padding-top: 7px;
 }
 
@@ -187,9 +188,6 @@ div.formbox {
     align-items: flex-end; 
 }
 
-.edit-modal {
-    
-}
 /* Footer styling */
 footer{
     /* position: fixed; */

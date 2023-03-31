@@ -7,9 +7,15 @@ const modalContent = document.getElementById('modal-content')
 const submitBook = document.getElementById('submit-book')
 const bookForm = document.getElementById('book-form')
 const clearBtn = document.getElementById('clear-storage')
+// Edit Modal elements.
 const editModalDiv = document.getElementById('edit-modal')
 const editModalContent = document.getElementById('edit-modal-content')
+const editBookForm = document.getElementById('edit-book-form')
 const editSubmitButton = document.getElementById('edit-submit-button')
+const editTitle = document.getElementById('edit-title')
+const editAuthor = document.getElementById('edit-author')
+const editPage = document.getElementById('edit-pages')
+const editStatus = document.getElementById('edit-pages')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -95,13 +101,7 @@ class book {
             editModalDiv.style.zIndex = "2"
             editModalContent.style.scale = "1"
         })
-        window.onclick = (event) => {
-            if (event.target == editModalDiv) {
-                editModalDiv.style.visibility = "hidden"
-                editModalDiv.style.zIndex = "1"
-                editModalContent.style.scale = "0"
-            }
-        }
+
 
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
@@ -211,6 +211,13 @@ window.onclick = (event) => {
         modalContent.style.scale = "0"
     }
 }
+window.onclick = (event) => {
+    if (event.target == editModalDiv) {
+        editModalDiv.style.visibility = "hidden"
+        editModalDiv.style.zIndex = "1"
+        editModalContent.style.scale = "0"
+    }
+}
 
 // calls the formSubmit to extract the form data.
 bookForm.addEventListener('submit', formSubmit)
@@ -228,9 +235,9 @@ function formSubmit(event) {
     lastAdded.makeCard(library) // Adds the last item to the dom.
     modalDiv.style.visibility = "hidden" // closes the modal
     modalDiv.style.zIndex = "1"
-    addBtnEvent()
 }
 
+// Update object that was edited, update DOM with new object data.
 function editFormSubmit (event) {
     event.preventDefault()
     
