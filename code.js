@@ -114,11 +114,16 @@ class book {
         })
     }
 
-    editSubmit() {
-        let editSubmitForm = document.getElementById('edit-book-form')
-        editSubmitForm.addEventListener('submit', () => {
-            
+    editSubmit(targetForm) {
+        // Add event for updating the object and dom. 
+        targetForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            updateEditedBook(targetForm)
         })
+        
+        // Remove all eventlisteners from the form to prevent even stacking and duplication.
+        let cloneForm = targetForm.cloneNode(true)
+        targetForm.parentNode.replaceChild(targetForm, cloneForm)
     }
 
     // Class func for adjusting the status of a book.
@@ -180,7 +185,24 @@ function retrieveBooksFromLocal() {
     })
 }
 
+// Update object and dom from edit form element.
+function updateEditedBook(thisObj) {
+    // Update object values with values from form. 
+    thisObj.title = editTitle.value
+    thisObj.author = editAuthor.value
+    thisObj.pages = editPage.value
+    thisObj.read = editStatus.value
 
+    console.log(thisObj)
+
+    // Update the dom.
+    library.innerHTML = ''
+    myLibrary.forEach(item => item.makeCard(library))
+
+    // Update localStorage
+    clearStorage()
+    storeMyLibrary()
+}
 
 // IIFE for checking localStorage and adding starter content if there is none.
 (function startUpSequence() {
