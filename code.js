@@ -280,12 +280,12 @@ function formSubmit(event) {
 
 function editFormSubmit(targetObj) {
     // Create a clone of the form element without events attached.
-    let theClone = document.getElementById('edit-book-form').cloneNode(true)
+    // let theClone = document.getElementById('edit-book-form').cloneNode(true)
     // Replace the original form to when the event is added, the target will be the object being edited.
-    document.getElementById('edit-book-form').parentElement.replaceChild(theClone, document.getElementById('edit-book-form'))
+    // document.getElementById('edit-book-form').parentElement.replaceChild(theClone, document.getElementById('edit-book-form'))
 
     // Update object that was edited, update DOM with new object data.
-    theClone.addEventListener('submit', (e) => {
+    editBookForm.addEventListener('submit', (e) => {
         e.preventDefault()  // Prevents browser from refreshing. 
     
         // Update currentObj variable with data collected from form.
@@ -293,7 +293,8 @@ function editFormSubmit(targetObj) {
         targetObj.author = editAuthor.value
         targetObj.pages = editPage.value
         targetObj.read = editStatus.value
-        console.log(targetObj)
+
+
         // Update the dom.
         library.innerHTML = ''
         myLibrary.forEach(item => item.makeCard(library))
@@ -309,10 +310,10 @@ function editFormSubmit(targetObj) {
         console.log(targetObj)
 
         // Clear the contents of the form element.
-        editTitle.value = ''
-        editAuthor.value = ''
-        editPage.vlue = ''
-        editStatus.value = ''
+        // editTitle.value = ''
+        // editAuthor.value = ''
+        // editPage.value = ''
+        // editStatus.value = ''
     })
 }
 
