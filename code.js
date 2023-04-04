@@ -38,6 +38,15 @@ class book {
         // return this
         return `${this.title}, ${this.author}, ${this.pages} pages, Read? ${this.read}, ID: ${this.elemId}`
     }
+
+    updateBook(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+        this.elemId = this.title.replaceAll(' ', '-')
+    }
+
     makeCard(targetElem) {
         // Create and set attributes for all dom elements. 
         // Append the final, completed, card element to the targetElem.
@@ -199,12 +208,9 @@ function retrieveBooksFromLocal() {
 
 // Update object and dom from edit form element.
 function updateEditedBook(thisObj) {
-    // Update object values with values from form. 
-    thisObj.title = editTitle.value
-    thisObj.author = editAuthor.value
-    thisObj.pages = editPage.value
-    thisObj.read = editStatus.value
-
+    // Update object values with values from form.
+    thisObj.updateBook(editTitle.value, editAuthor.value, editPage.value, editStatus.value)
+    
     console.log(thisObj)
 
     // Update the dom.
