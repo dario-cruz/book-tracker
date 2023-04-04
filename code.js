@@ -16,6 +16,7 @@ const editTitle = document.getElementById('edit-title')
 const editAuthor = document.getElementById('edit-author')
 const editPage = document.getElementById('edit-pages')
 const editStatus = document.getElementById('edit-status')
+const editFormBox = document.getElementById('edit-form-box')
 
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
@@ -85,6 +86,10 @@ class book {
             
             // Define all the the elements needed.
             let theHeading = document.querySelector('#edit-modal-content > .topbox > .modal-heading')
+            let editTitle = document.getElementById('edit-title')
+            let editAuthor = document.getElementById('edit-author')
+            let editPage = document.getElementById('edit-pages')
+            let editStatus = document.getElementById('edit-status')
 
             // Update the heading of modal to reflect current obj.
             theHeading.innerText = `Editing: ${this.title}`
@@ -100,6 +105,9 @@ class book {
             editModalDiv.style.zIndex = "2"
             editModalContent.style.scale = "1"
             currentObj = this
+
+            // Run funcs to set events and targets.
+            editFormSubmit(this)
         })
 
 
@@ -270,23 +278,44 @@ function formSubmit(event) {
     modalDiv.style.zIndex = "1"
 }
 
-// Update object that was edited, update DOM with new object data.
-editBookForm.addEventListener('submit', (e) => {
-    e.preventDefault()  // Prevents browser from refreshing. 
+function editFormSubmit(targetObj) {
+    // Create a clone of the form element without events attached.
+    let theClone = document.getElementById('edit-book-form').cloneNode(true)
+    // Replace the original form to when the event is added, the target will be the object being edited.
+    document.getElementById('edit-book-form').parentElement.replaceChild(theClone, document.getElementById('edit-book-form'))
 
+    // Update object that was edited, update DOM with new object data.
+    theClone.addEventListener('submit', (e) => {
+        e.preventDefault()  // Prevents browser from refreshing. 
     
-    // Update currentObj variable with data collected from form.
-    currentObj.title = editTitle.value
-    currentObj.author = editAuthor.value
-    currentObj.pages = editPage.value
-    currentObj.read = editStatus.value
+        // Update currentObj variable with data collected from form.
+        targetObj.title = editTitle.value
+        targetObj.author = editAuthor.value
+        targetObj.pages = editPage.value
+        targetObj.read = editStatus.value
+        console.log(targetObj)
+        // Update the dom.
+        library.innerHTML = ''
+        myLibrary.forEach(item => item.makeCard(library))
 
-    // Close edit momdal.
-    editModalDiv.style.visibility = "hidden"
-    editModalDiv.style.zIndex = "1"
-    editModalContent.style.scale = "0"
-    console.log(currentObj)
-})
+        // Update localStorage
+        clearStorage()
+        storeMyLibrary()
+
+        // Close edit momdal.
+        editModalDiv.style.visibility = "hidden"
+        editModalDiv.style.zIndex = "1"
+        editModalContent.style.scale = "0"
+        console.log(targetObj)
+
+        // Clear the contents of the form element.
+        editTitle.value = ''
+        editAuthor.value = ''
+        editPage.vlue = ''
+        editStatus.value = ''
+    })
+}
+
 
 // Func for clearing local storage.
 function clearStorage() {
