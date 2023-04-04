@@ -20,6 +20,9 @@ const editStatus = document.getElementById('edit-status')
 // Create array to hold book objects to be displayed.
 let myLibrary = [];
 
+// Variable for current object that is being edited.
+let currentObj = {}
+
 // Class for adding books to array.
 class book {
     constructor(title, author, pages, read) {
@@ -96,6 +99,7 @@ class book {
             editModalDiv.style.visibility = "visible"
             editModalDiv.style.zIndex = "2"
             editModalContent.style.scale = "1"
+            currentObj = this
         })
 
 
@@ -120,7 +124,7 @@ class book {
             e.preventDefault()
             updateEditedBook(targetForm)
         })
-        
+
         // Remove all eventlisteners from the form to prevent even stacking and duplication.
         let cloneForm = targetForm.cloneNode(true)
         targetForm.parentNode.replaceChild(targetForm, cloneForm)
@@ -243,6 +247,11 @@ window.onclick = (event) => {
     }
 }
 
+// prevent the default behavior of the submit button for edit-modal.
+// editSubmitButton.addEventListener('click', (e) => {
+//     e.preventDefault()
+// })
+
 // calls the formSubmit to extract the form data.
 bookForm.addEventListener('submit', formSubmit)
 
@@ -262,11 +271,22 @@ function formSubmit(event) {
 }
 
 // Update object that was edited, update DOM with new object data.
-function editFormSubmit (event) {
-    event.preventDefault()
+editBookForm.addEventListener('submit', (e) => {
+    e.preventDefault()  // Prevents browser from refreshing. 
+
     
-    
-}
+    // Update currentObj variable with data collected from form.
+    currentObj.title = editTitle.value
+    currentObj.author = editAuthor.value
+    currentObj.pages = editPage.value
+    currentObj.read = editStatus.value
+
+    // Close edit momdal.
+    editModalDiv.style.visibility = "hidden"
+    editModalDiv.style.zIndex = "1"
+    editModalContent.style.scale = "0"
+    console.log(currentObj)
+})
 
 // Func for clearing local storage.
 function clearStorage() {
