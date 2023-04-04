@@ -255,10 +255,6 @@ window.onclick = (event) => {
     }
 }
 
-// prevent the default behavior of the submit button for edit-modal.
-// editSubmitButton.addEventListener('click', (e) => {
-//     e.preventDefault()
-// })
 
 // calls the formSubmit to extract the form data.
 bookForm.addEventListener('submit', formSubmit)
@@ -279,10 +275,30 @@ function formSubmit(event) {
 }
 
 function editFormSubmit(targetObj) {
-    // Create a clone of the form element without events attached.
-    // let theClone = document.getElementById('edit-book-form').cloneNode(true)
-    // Replace the original form to when the event is added, the target will be the object being edited.
-    // document.getElementById('edit-book-form').parentElement.replaceChild(theClone, document.getElementById('edit-book-form'))
+
+    editBookForm.removeEventListener('submit', (e) => {
+        e.preventDefault()  // Prevents browser from refreshing. 
+    
+        // Update currentObj variable with data collected from form.
+        targetObj.title = editTitle.value
+        targetObj.author = editAuthor.value
+        targetObj.pages = editPage.value
+        targetObj.read = editStatus.value
+
+        // Update the dom.
+        library.innerHTML = ''
+        myLibrary.forEach(item => item.makeCard(library))
+
+        // Update localStorage
+        clearStorage()
+        storeMyLibrary()
+
+        // Close edit momdal.
+        editModalDiv.style.visibility = "hidden"
+        editModalDiv.style.zIndex = "1"
+        editModalContent.style.scale = "0"
+        console.log(targetObj)
+    })
 
     // Update object that was edited, update DOM with new object data.
     editBookForm.addEventListener('submit', (e) => {
@@ -308,12 +324,6 @@ function editFormSubmit(targetObj) {
         editModalDiv.style.zIndex = "1"
         editModalContent.style.scale = "0"
         console.log(targetObj)
-
-        // Clear the contents of the form element.
-        // editTitle.value = ''
-        // editAuthor.value = ''
-        // editPage.value = ''
-        // editStatus.value = ''
     })
 }
 
