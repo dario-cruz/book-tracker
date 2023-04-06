@@ -119,7 +119,6 @@ class book {
             editFormSubmit(this)
         })
 
-
         // Append the dom elems.
         cardContent.append(bookTitle, bookAuthor, bookPages, bookStatus)
         cardDiv.append(cardContent, cardReadStatus, cardRemove, editBookBtn)
@@ -133,6 +132,124 @@ class book {
         cardRemove.addEventListener('click', () => {
             this.removeCard(this)
         })
+    }
+
+    makeForm(targetElement) {
+        // Modal container
+        let modal = document.createElement('div')
+        modal.setAttribute('id', `${this.elemId}-modal`)
+        modal.setAttribute('class', 'modal-content')
+
+        // Container for content
+        let modalContainer = document.createElement('div')
+        modalContainer.setAttribute('id', `${this.elemId}-modal-content`)
+        modalContainer.setAttribute('class', 'modal-content')
+
+        // Container for heading
+        let headingContainer = document.createElement('div')
+        headingContainer.setAttribute('class', 'heading-box')
+        // Heading content.
+        let theHeading = document.createElement('h1')
+        theHeading.setAttribute('class', 'modal-heading')
+        theHeading.innerText = `${this.title}`
+
+        // Container for form.
+        let formContainer = document.createElement('div')
+        formContainer.setAttribute('id', `${this.elemId}-form-box`)
+        formContainer.setAttribute('class', 'formbox')
+
+        // Edit book form
+        let editForm = document.createElement('form')
+        editForm.setAttribute('action', '')
+        editForm.setAttribute('id', `${this.elemId}-form`)
+
+        // Title Input.
+        let titleInput = document.createElement('input')
+        titleInput.setAttribute('type', 'text')
+        titleInput.setAttribute('name', 'edit-title')
+        titleInput.setAttribute('id', 'edit-title')
+        titleInput.setAttribute('required', '')
+        let titleLabel = document.createElement('label')
+        titleLabel.setAttribute('id', 'edit-title-label')
+        titleLabel.setAttribute('class', 'label')
+        titleLabel.setAttribute('for', 'edit-title')
+        titleLabel.innerText = 'Book Title'
+        // Title Input container.
+        let titleContainer = document.createElement('div')
+        titleContainer.setAttribute('class', 'formtitle')
+
+        // Author Input
+        let authorInput = document.createElement('input')
+        authorInput.setAttribute('name', 'edit-author')
+        authorInput.setAttribute('id', 'edit-author')
+        authorInput.setAttribute('type', 'text')
+        authorInput.setAttribute('required', '')
+        let authorLabel = document.createElement('label')
+        authorLabel.setAttribute('id', 'edit-author-label')
+        authorLabel.setAttribute('class', 'label')
+        authorLabel.setAttribute('for', 'edit-author')
+        authorLabel.innerText = 'Author'
+        // Author Input Container
+        let authorContainer = document.createElement('div')
+        authorContainer.setAttribute('class', 'formauthor')
+
+        // Pages Input
+        let pagesInput = document.createElement('input')
+        pagesInput.setAttribute('id', 'edit-pages')
+        pagesInput.setAttribute('name', 'edit-pages')
+        pagesInput.setAttribute('type', 'number')
+        pagesInput.setAttribute('min', '1')
+        pagesInput.setAttribute('max', '9000')
+        let pagesLabel = document.createElement('label')
+        pagesLabel.setAttribute('class', 'label')
+        pagesLabel.setAttribute('id', 'edit-pages-label')
+        pagesLabel.setAttribute('for', 'edit-pages')
+        pagesLabel.innerText = 'Number of Pages'
+        // Pages Input Container
+        let pagesContainer = document.createElement('div')
+        pagesContainer.setAttribute('class', 'formpages')
+
+        // Read Status Input
+        let statusInput = document.createElement('select')
+        statusInput.setAttribute('id', 'edit-status')
+        statusInput.setAttribute('name', 'read-status')
+        let statusLabel = document.createElement('label')
+        statusLabel.setAttribute('class', 'label')
+        statusLabel.setAttribute('for', 'edit-status')
+        statusLabel.setAttribute('id', 'edit-status-label')
+        statusLabel.innerText = 'Have You Read It?'
+        let optionYes = document.createElement('option')
+        optionYes.setAttribute('value', 'Yes')
+        optionYes.innerText = 'Yes'
+        let optionNo = document.createElement('option')
+        optionNo.setAttribute('value', 'No')
+        optionNo.innerText = 'No'
+        // Read Status container.
+        let statusContainer = document.createElement('div')
+        statusContainer.setAttribute('class', 'readstatus')
+
+        // Button Container
+        let buttonContainer = document.createElement('div')
+        buttonContainer.setAttribute('class', 'buttonbox')
+        let formButton = documenrt.createElement('button')
+        formButton.setAttribute('type', 'submit')
+        formButton.setAttribute('for', 'edit-book-form')
+
+        // Append all the elements in order.
+        modal.append(modalContainer) 
+        modalContainer.append(headingContainer,formContainer, buttonContainer)
+        headingContainer.append(theHeading)
+        formContainer.append(editForm)
+        buttonContainer.append(formButton)
+        editForm.append(titleContainer, authorContainer, pagesContainer, statusContainer)
+        titleContainer.append(titleLabel, titleInput)
+        authorContainer.append(authorLabel, authorInput)
+        pagesContainer.append(pagesLabel, pagesInput)
+        statusContainer.append(statusLabel, statusInput)
+        statusInput.append(optionYes, optionNo)
+
+        // Append the final result to the target.
+        targetElement.append(modal)
     }
 
     editSubmit(targetForm) {
