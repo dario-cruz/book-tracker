@@ -282,7 +282,7 @@ class book {
         this.statusInput.append(optionYes, optionNo)
 
         // Append the final result to the target.
-        targetElement.append(modal)
+        targetElement.append(this.modal)
     }
 
     // Class func for adjusting the status of a book.
