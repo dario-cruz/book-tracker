@@ -32,6 +32,14 @@ class book {
         this.pages = pages
         this.read = read
         this.elemId = this.title.replaceAll(' ', '-')
+        // Class global elements.
+        this.modal = ''
+        this.modalContainer = ''
+        this.titleInput = ''
+        this.authorInput = ''
+        this.pagesInput = ''
+        this.statusInput = ''
+        this.theHeading = ''
     }
  
     info() {
@@ -93,30 +101,20 @@ class book {
         editBookBtn.addEventListener('click', (e) => {
             e.preventDefault()
             
-            // Define all the the elements needed.
-            let theHeading = document.querySelector('#edit-modal-content > .topbox > .modal-heading')
-            let editTitle = document.getElementById('edit-title')
-            let editAuthor = document.getElementById('edit-author')
-            let editPage = document.getElementById('edit-pages')
-            let editStatus = document.getElementById('edit-status')
-
             // Update the heading of modal to reflect current obj.
-            theHeading.innerText = `Editing: ${this.title}`
+            this.theHeading.innerText = `Editing: ${this.title}`
 
             // Update the values to match the target object.
-            editTitle.value = this.title
-            editAuthor.value = this.author
-            editPage.value = this.pages
-            editStatus.value = this.read
+            this.titleInput.value = this.title
+            this.authorInput.value = this.author
+            this.pagesInput.value = this.pages
+            this.statusInput.value = this.read
 
             // Change the visibility of the needed element. 
-            editModalDiv.style.visibility = "visible"
-            editModalDiv.style.zIndex = "2"
-            editModalContent.style.scale = "1"
+            this.modal.style.visibility = "visible"
+            this.modal.style.zIndex = "2"
+            this.modalContainer.style.scale = "1"
             currentObj = this
-
-            // Run funcs to set events and targets.
-            editFormSubmit(this)
         })
 
         // Append the dom elems.
@@ -136,22 +134,28 @@ class book {
 
     makeForm(targetElement) {
         // Modal container
-        let modal = document.createElement('div')
-        modal.setAttribute('id', `${this.elemId}-modal`)
-        modal.setAttribute('class', 'modal-content')
+        let tempModal = document.createElement('div')
+        this.modal = tempModal
+
+        console.log(this.modal)
+        this.modal.setAttribute('id', `${this.elemId}-modal`)
+        this.modal.setAttribute('class', 'modal-content')
 
         // Container for content
-        let modalContainer = document.createElement('div')
-        modalContainer.setAttribute('id', `${this.elemId}-modal-content`)
-        modalContainer.setAttribute('class', 'modal-content')
+        let tempModalContainer = document.createElement('div')
+        this.modalContainer = tempModalContainer
+
+        this.modalContainer.setAttribute('id', `${this.elemId}-modal-content`)
+        this.modalContainer.setAttribute('class', 'modal-content')
 
         // Container for heading
         let headingContainer = document.createElement('div')
         headingContainer.setAttribute('class', 'heading-box')
         // Heading content.
         let theHeading = document.createElement('h1')
-        theHeading.setAttribute('class', 'modal-heading')
-        theHeading.innerText = `${this.title}`
+        this.theHeading = theHeading
+        this.theHeading.setAttribute('class', 'modal-heading')
+        this.theHeading.innerText = `${this.title}`
 
         // Container for form.
         let formContainer = document.createElement('div')
@@ -164,11 +168,12 @@ class book {
         editForm.setAttribute('id', `${this.elemId}-form`)
 
         // Title Input.
-        let titleInput = document.createElement('input')
-        titleInput.setAttribute('type', 'text')
-        titleInput.setAttribute('name', 'edit-title')
-        titleInput.setAttribute('id', 'edit-title')
-        titleInput.setAttribute('required', '')
+        let tempTitleInput = document.createElement('input')
+        this.titleInput = tempTitleInput
+        this.titleInput.setAttribute('type', 'text')
+        this.titleInput.setAttribute('name', 'edit-title')
+        this.titleInput.setAttribute('id', 'edit-title')
+        this.titleInput.setAttribute('required', '')
         let titleLabel = document.createElement('label')
         titleLabel.setAttribute('id', 'edit-title-label')
         titleLabel.setAttribute('class', 'label')
@@ -179,11 +184,12 @@ class book {
         titleContainer.setAttribute('class', 'formtitle')
 
         // Author Input
-        let authorInput = document.createElement('input')
-        authorInput.setAttribute('name', 'edit-author')
-        authorInput.setAttribute('id', 'edit-author')
-        authorInput.setAttribute('type', 'text')
-        authorInput.setAttribute('required', '')
+        let tempAuthorInput = document.createElement('input')
+        this.authorInput = tempAuthorInput
+        this.authorInput.setAttribute('name', 'edit-author')
+        this.authorInput.setAttribute('id', 'edit-author')
+        this.authorInput.setAttribute('type', 'text')
+        this.authorInput.setAttribute('required', '')
         let authorLabel = document.createElement('label')
         authorLabel.setAttribute('id', 'edit-author-label')
         authorLabel.setAttribute('class', 'label')
@@ -195,11 +201,12 @@ class book {
 
         // Pages Input
         let pagesInput = document.createElement('input')
-        pagesInput.setAttribute('id', 'edit-pages')
-        pagesInput.setAttribute('name', 'edit-pages')
-        pagesInput.setAttribute('type', 'number')
-        pagesInput.setAttribute('min', '1')
-        pagesInput.setAttribute('max', '9000')
+        this.pagesInput = pagesInput
+        this.pagesInput.setAttribute('id', 'edit-pages')
+        this.pagesInput.setAttribute('name', 'edit-pages')
+        this.pagesInput.setAttribute('type', 'number')
+        this.pagesInput.setAttribute('min', '1')
+        this.pagesInput.setAttribute('max', '9000')
         let pagesLabel = document.createElement('label')
         pagesLabel.setAttribute('class', 'label')
         pagesLabel.setAttribute('id', 'edit-pages-label')
@@ -211,8 +218,9 @@ class book {
 
         // Read Status Input
         let statusInput = document.createElement('select')
-        statusInput.setAttribute('id', 'edit-status')
-        statusInput.setAttribute('name', 'read-status')
+        this.statusInput = statusInput
+        this.statusInput.setAttribute('id', 'edit-status')
+        this.statusInput.setAttribute('name', 'read-status')
         let statusLabel = document.createElement('label')
         statusLabel.setAttribute('class', 'label')
         statusLabel.setAttribute('for', 'edit-status')
@@ -236,32 +244,42 @@ class book {
         formButton.setAttribute('for', 'edit-book-form')
 
         // Events for form element.
-        editBookForm.addEventListener('submit', (e) => {
+        editForm.addEventListener('submit', (e) => {
             e.preventDefault()
 
             // Update object values with form input values.
-            this.title = titleInput.value
-            this.author = authorInput.value
-            this.pages = pagesInput.value
-            this.read = statusInput.value
-
-
+            this.title = this.titleInput.value
+            this.author = this.authorInput.value
+            this.pages = this.pagesInput.value
+            this.read = this.statusInput.value
+            
+            // Update the dom.
+            library.innerHTML = ''
+            myLibrary.forEach(item => item.makeCard(library))
+            myLibrary.forEach(item => item.makeForm(document.body))
+            
+            // Update localStorage
+            clearStorage()
+            storeMyLibrary()
+            
             //Close the modal. 
-            modal.style.visibility = '0'
+            this.modal.style.visibility = 'hidden'
+            this.modal.style.zIndex = '1'
+            this.modalContainer.style.scale = '0'
         })
 
         // Append all the elements in order.
-        modal.append(modalContainer) 
-        modalContainer.append(headingContainer,formContainer, buttonContainer)
+        this.modal.append(this.modalContainer) 
+        this.modalContainer.append(headingContainer,formContainer, buttonContainer)
         headingContainer.append(theHeading)
         formContainer.append(editForm)
         buttonContainer.append(formButton)
         editForm.append(titleContainer, authorContainer, pagesContainer, statusContainer)
-        titleContainer.append(titleLabel, titleInput)
-        authorContainer.append(authorLabel, authorInput)
-        pagesContainer.append(pagesLabel, pagesInput)
-        statusContainer.append(statusLabel, statusInput)
-        statusInput.append(optionYes, optionNo)
+        titleContainer.append(titleLabel, this.titleInput)
+        authorContainer.append(authorLabel, this.authorInput)
+        pagesContainer.append(pagesLabel, this.pagesInput)
+        statusContainer.append(statusLabel, this.statusInput)
+        this.statusInput.append(optionYes, optionNo)
 
         // Append the final result to the target.
         targetElement.append(modal)
@@ -351,9 +369,11 @@ function updateEditedBook(thisObj) {
         myLibrary.push(new book('The Dip', 'Seth Godin', '100', 'No'))
         storeMyLibrary()
         myLibrary.forEach(item => item.makeCard(library))
+        myLibrary.forEach(item => item.makeForm(document.body))
     } else {
         retrieveBooksFromLocal()
         myLibrary.forEach(item => item.makeCard(library))
+        myLibrary.forEach(item => item.makeForm(document.body))
     }
 })()
 
@@ -419,7 +439,7 @@ function editFormSubmit(targetObj) {
         clearStorage()
         storeMyLibrary()
 
-        // Close edit momdal.
+        // Close edit modal.
         editModalDiv.style.visibility = "hidden"
         editModalDiv.style.zIndex = "1"
         editModalContent.style.scale = "0"
