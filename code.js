@@ -231,9 +231,24 @@ class book {
         // Button Container
         let buttonContainer = document.createElement('div')
         buttonContainer.setAttribute('class', 'buttonbox')
-        let formButton = documenrt.createElement('button')
+        let formButton = document.createElement('button')
         formButton.setAttribute('type', 'submit')
         formButton.setAttribute('for', 'edit-book-form')
+
+        // Events for form element.
+        editBookForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            // Update object values with form input values.
+            this.title = titleInput.value
+            this.author = authorInput.value
+            this.pages = pagesInput.value
+            this.read = statusInput.value
+
+
+            //Close the modal. 
+            modal.style.visibility = '0'
+        })
 
         // Append all the elements in order.
         modal.append(modalContainer) 
@@ -250,18 +265,6 @@ class book {
 
         // Append the final result to the target.
         targetElement.append(modal)
-    }
-
-    editSubmit(targetForm) {
-        // Add event for updating the object and dom. 
-        targetForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            updateEditedBook(targetForm)
-        })
-
-        // Remove all eventlisteners from the form to prevent even stacking and duplication.
-        let cloneForm = targetForm.cloneNode(true)
-        targetForm.parentNode.replaceChild(targetForm, cloneForm)
     }
 
     // Class func for adjusting the status of a book.
